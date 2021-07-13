@@ -8,6 +8,20 @@
 
 ## 使用方法
 
-运行 `python relogin.py -u username -p password` 即可使服务器获取访问外网权限。
+运行 `python main.py -m ri -u username -p password` 即可使服务器获取访问外网权限。
 
-如仅需断网，执行 `python logout.py` 即可。
+运行 `python main.py -m rl -u username -p password` 即可断开服务器外网连接，仅保留内网连接。
+
+## 参数说明
+
+```text
+-m/--mode:
+    -l: local, 连接校园内网
+    -i: internet, 连接互联网
+    -o: log off, 断开认证
+    -rl: relogin local, 断开认证后再连接内网，即踢掉原来认证账号后再重新登陆，解决认证失败问题
+    -ri: relogin internet, 断开认证后再连接互联网，同上
+-u/--username: 校园网账号
+-p/--password: 校园网密码
+--ac_id: 校园网认证软件参数，意义不明，仅供调试使用，默认值159
+```
