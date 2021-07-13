@@ -8,9 +8,11 @@
 
 ## 使用方法
 
-运行 `python main.py -m ri -u username -p password` 即可使服务器获取访问外网权限。
+运行 `python main.py` 按照提示操作即可。
 
-运行 `python main.py -m rl -u username -p password` 即可断开服务器外网连接，仅保留内网连接。
+运行 `python main.py -m ri -u username -p password` 即可使服务器获取访问外网权限。此方法会在命令行历史记录中显示密码。
+
+运行 `python main.py -m rl -u username -p password` 即可断开服务器外网连接，仅保留内网连接。此方法会在命令行历史记录中显示密码。
 
 ## 参数说明
 
