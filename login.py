@@ -1,4 +1,3 @@
-import argparse
 import json
 import re
 
@@ -7,7 +6,8 @@ import requests
 from encode import *
 
 
-def login(username, password, ac_id='159'):
+def login(username, password, internet=True, ac_id='159'):
+    username = username if internet else username + '@tsinghua'
     url_challenge = "http://auth4.tsinghua.edu.cn/cgi-bin/get_challenge"
     url_protal = "http://auth4.tsinghua.edu.cn/cgi-bin/srun_portal"
     payload = {'ac_id': ac_id, 'username': username, 'ip': '', 'double_stack': '1',
@@ -41,16 +41,8 @@ def login(username, password, ac_id='159'):
 
     res = requests.get(url=url_protal, params=queryData)
     res = json.loads(re.search('\{[^\}]+\}', res.text).group())
-    print(res)
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(description="Perform THU-Net login.")
-    parser.add_argument('-u', '--username', type=str)
-    parser.add_argument('-p', '--password', type=str)
-    parser.add_argument('--ac-id', type=str, default='159', help="Unknown, default 159")
-    return parser.parse_args()
-
-if __name__ == '__main__':
-    args = parse_args()
-    login(args.username, args.password, args.ac_id)
+    # print(res)
+    if res['error'] == 'ok':
+        return 'Login Successful'
+    else:
+        return res['error_msg']
