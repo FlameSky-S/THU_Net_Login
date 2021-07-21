@@ -4,6 +4,7 @@ import getpass
 
 from login import login
 from logout import logout
+from validate import validate
 
 
 class Args():
@@ -44,6 +45,7 @@ if __name__ == '__main__':
         if args.username and args.password:
             res = login(args.username, args.password, False, args.ac_id)
             print(res)
+            sys.exit(0)
         else:
             print("Username and password required.")
             parser.print_help()
@@ -52,26 +54,38 @@ if __name__ == '__main__':
         if args.username and args.password:
             res = login(args.username, args.password, True, args.ac_id)
             print(res)
+            sys.exit(0)
         else:
             print("Username and password required.")
             parser.print_help()
             sys.exit(0)
     elif args.mode == 'o': # Log off
         logout()
+        sys.exit(0)
     elif args.mode == 'rl': # Relogin Local
         if args.username and args.password:
-            logout()
-            res = login(args.username, args.password, False, args.ac_id)
-            print(res)
+            if (validate(args.username, args.password)):
+                logout()
+                res = login(args.username, args.password, False, args.ac_id)
+                print(res)
+                sys.exit(0)
+            else:
+                print("Incorrect username or password")
+                sys.exit(0)
         else:
             print("Username and password required.")
             parser.print_help()
             sys.exit(0)
     elif args.mode == 'ri': #Relogin Internet
         if args.username and args.password:
-            logout()
-            res = login(args.username, args.password, True, args.ac_id)
-            print(res)
+            if (validate(args.username, args.password)):
+                logout()
+                res = login(args.username, args.password, True, args.ac_id)
+                print(res)
+                sys.exit(0)
+            else:
+                print("Incorrect username or password")
+                sys.exit(0)
         else:
             print("Username and password required.")
             parser.print_help()
