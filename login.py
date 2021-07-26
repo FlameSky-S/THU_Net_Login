@@ -25,7 +25,7 @@ def login(username, password, internet=True, ac_id='159'):
     info_str = '{"username": "' + username + '", "password": "' + password + \
                '", "ip": "", "acid": "' + ac_id + '", "enc_ver": "srun_bx1"}'
     queryData['info'] = '{SRBX1}' + get_base64(get_xencode(info_str, token))
-    hmd5 = get_md5(token, 'Wasd1234')
+    hmd5 = get_md5(password, token)
     queryData['password'] = "{MD5}" + hmd5
     chksum_str = token + username + token + hmd5 + token + ac_id + token + "" + \
                  token + str(n) + token + str(_type) + token + queryData['info']
