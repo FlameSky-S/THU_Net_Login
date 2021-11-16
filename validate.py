@@ -29,6 +29,3 @@ def validate(username, password):
         return True
     else:
         return False
-
-if __name__ == "__main__":
-    validate('mhs20', 'Wasd1234')
