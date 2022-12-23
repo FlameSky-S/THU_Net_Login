@@ -15,7 +15,7 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--password', type=str, help="校园网密码")
     args = parser.parse_args()
 
-    res = ping('ping.tsinghua.edu.cn')
+    res = ping('its.tsinghua.edu.cn')
     # print(res)
     if not res:
         logout()
